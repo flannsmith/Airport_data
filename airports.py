@@ -22,7 +22,7 @@ for row in sort1:
     airport_id = row[4]
     airports[airport_id] = row[1], row[2], float(row[6]), float(row[7])
 
-	
+
 def distanceBetweenAirports(latitude1, longitude1, latitude2, longitude2):
 	"""Calculates the distance from between 2 airports and returns a float"""
 	coords_1 = (latitude1,longitude1)
@@ -51,7 +51,6 @@ def distanceBetweenAirports(latitude1, longitude1, latitude2, longitude2):
 #distance = acos(sin(latitude1)) * sin(latitude2) + cos(latitude1)*cos(latitude2)*cos(longitude2-longitude1) * 6371
 
 	
-
    
 # Correct distance formula 
 # Dist(point1, point2) =ACOS( SIN(lat1)*SIN(lat2) + COS(lat1)*COS(lat2)*COS(lon2-lon1) ) * 6371
@@ -104,23 +103,31 @@ def main():
 	cost = legOfJourney()
 	print("Cost of single itinerary leg in €: ", cost * abs(distance))
 
+
 if __name__ == "__main__":
     main()
 
 
-#multilegitinerary = input("Enter route you wish to visit (e.g. ORIGIN: DEST1: DEST2: DEST3: HOME:")
+
+
+
+
+# multilegitinerary = str(input("Enter route you wish to visit (e.g. ORIGIN: DEST1: DEST2: DEST3: HOME:"))
 
 # parser.add_argument('multi_dest_trip', type=str, help="Enter route you wish to visit (e.g. ORIGIN: DEST1: DEST2: DEST3: HOME:")
 
 # s = args.multi_dest_trip
 
-# print(s)
 
 
+# print(multilegitinerary)
+# words = multilegitinerary.split(" ")
 
 # List1 = []
-# for string in multilegitinerary:
-# 	List1.insert(string)
+# for words in multilegitinerary:
+# 	List1.append(words)
+# print(List1)
+
 
 # def selection_sort(items):
 # # """Sorts a list of items into ascending order using the
