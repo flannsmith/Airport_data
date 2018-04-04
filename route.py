@@ -1,9 +1,14 @@
 import geopy.distance
 import csv
 import operator
+import argparse
 multilegitinerary = input("Enter route you wish to visit (e.g. ORIGIN: DEST1: DEST2: DEST3: HOME:")
 
+
 # parser.add_argument('multi_dest_trip', type=str, help="Enter route you wish to visit (e.g. ORIGIN: DEST1: DEST2: DEST3: HOME:")
+# parser.add_argument('origin', type=str, help="3 letter airport aircode/id e.g. 'DUB'")
+# parser.add_argument('dest1', type=str, help="3 letter airport aircode/id e.g. 'SYD'")
+# args = parser.parse_args()
 
 # s = args.multi_dest_trip
 
@@ -14,13 +19,17 @@ List1 = []
 #print(multilegitinerary)
 words = multilegitinerary.split(" ")
 List1.append(words)
-print(type(List1))
+print(List1)
 
+#print(type(List1))
 
+# def Route(*params):
+#     """Takes list argument and handles each list item as a separate parameter"""
+#     print(*params)
+
+# print (Route(List1))
 
 #print(List1)
-
-#set is much more efficient than List behind the scenes as python can attempt to directly access the target number in the set, rather than iterate through every item in the list and compare every item to the target number.
 
 #s = set(List1)
 #print(s)
@@ -40,10 +49,10 @@ distances = {}
 for row in sort1:
     airport_id = row[4]
     airports[airport_id] = float(row[6]), float(row[7])
-print (airports[airport_id])
-    # for item in List1:
-    #     if item == airports[airport_id]:
-    #         print(item)
+    for item in List1:
+      if item == airports[airport_id]:
+          print("Found they key")
+            
 
 # def Route(List1): 
 
