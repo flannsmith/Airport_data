@@ -7,6 +7,8 @@ from operator import itemgetter
 import math
 import itertools
 
+#Need to make classes for airport and currency
+
 #Taking input of destinations from user in the form of one long string
 #To input a chain of destinations/run program type:
 #multiroutes.py -l "DUB LDN SYD AZ3 KDH"
@@ -14,11 +16,11 @@ import itertools
 #need to iterate through list and for each item create a new dictionary with corresponding latitude and longitide
 
 parser = argparse.ArgumentParser(description="Enter the chain of airports/destinations you wish to visit as a string e.g. 'DUB LDN': ")
-parser.add_argument('-l', '--list', help='-l "DUB SYD LDN HEA GLW"', type=str)
+parser.add_argument('-l', '--list', help='-l "DUB LDN SYD AZ3 KDH"', type=str)
 args = parser.parse_args()
 my_list = [str(item) for item in args.list.split(' ')]
 
-print(my_list)
+#cleaprint(my_list)
 
 airport_names = open('airport.csv', 'r')
 csv0 = csv.reader(airport_names, delimiter=',')
@@ -35,7 +37,7 @@ for row in sort1:
             distances.update({airport_id : airports[airport_id]})
             #distances.update({'Aircode': airports[airport_id]})
             #distances == airports[airport_id]
-            #print(distances)
+print(distances)
 
 #print(distances)
 
@@ -48,7 +50,7 @@ for key, value in distances.items():
 #Sort elements in middle of list by 'sorted' function => sorts based on increasing latitude
 
 list2[1:-1]= sorted(list2[1:-1])
-print(list2)
+#print(list2)
 
 #if distance between element[0] and element[1] > element[0] and element[2]
 #swap values
@@ -69,20 +71,28 @@ def distance(p0, p1):
 #     min_distance = min(min_distance, distance(p0, p1))
 #     print(min_distance)
 
-min_distance = distanceBetweenAirports(list2[0], list2[1])
-for p0, p1 in itertools.combinations(list2, 2):
-    distance_btw_airports = distanceBetweenAirports(p0, p1)
+# min_distance = distanceBetweenAirports(list2[0], list2[1])
+# for p0, p1 in itertools.combinations(list2, 2):
+#     distance_btw_airports = distanceBetweenAirports(p0, p1)
     #min_distance = min(min_distance, distanceBetweenAirports(p0, p1))
     #print("Distance between:", p0, p1, "is", distance_btw_airports)
     # if distance_btw_airports(p0, p1) > distance_btw_airports(p0, p1):
     #     p0,p1 = p0,p1
     #print("Distance between:",p0, p1, "is", min_distance)
 
-min_distance = distanceBetweenAirports(list2[1], list2[2])
-for p0,p1 in itertools.combinations(list2, 2):
-    distance_btw_airports = distanceBetweenAirports(p0, p1)
-    print("Distance between:", p0, p1, "is", distance_btw_airports)
-
+distance_list = []
+print("No. of aircodes entered:", len(list2))
+if len(list2) <= 1:
+    print("Enter a min of 2 aircodes to calculate distance")
+#elif len(list2) = 2: plug into original formula
+else:
+    min_distance = distanceBetweenAirports(list2[1], list2[2])
+    for p0,p1 in itertools.combinations(list2, 2):
+        distance_btw_airports = distanceBetweenAirports(p0, p1)
+        print("Distance between:", p0, p1, "is", distance_btw_airports)
+        distance_list.append(distance_btw_airports)
+    
+print(distance_list)
 
 
 def bestRoutes(list):
@@ -94,6 +104,56 @@ def bestRoutes(list):
     #multiplies distance by cost to get total journey cost
     #iterate through sorted list to find corresponding lat and long in distances dict:
     #when found return the aircodes in order of least distance
+
+
+#Undirected graph withw weighted edges 
+
+# class Graph:
+
+#     def __init__(self):
+#         self.__my_adjacency_list = []
+#         self.__vertex_content = []
+
+#     def add_vertex(self, x):
+#         self.__my_adjacency_list.append([])
+#         self.__vertex_content.append(x)
+
+#     def add_edge(self, x, y):
+#        if y not in self.__my_adjacency_list[x]:
+#            self.__my_adjacency_list[x].append(y)
+#            self.__my_adjacency_list[y].append(x)
+
+#     def neighbours(self, x):
+#         return self.__my_adjacency_list[x]
+
+#     def print_str(self):
+#         for i in range(0, len(self.__my_adjacency_list)):
+#             print(
+#                 "mode", i, "(", self.__vertex_content[i], ") =", self.__my_adjacency_list[i])
+
+# def main():
+
+#     # dist_foo = Graph()
+#     # dist_foo.add_vertex(97)
+#     # dist_foo.add_edge(1, 2)
+#     # dist_foo.neighbours(7)
+#     # dist_foo.print_str()
+
+#     graph = Graph()
+#     graph.add_vertex('97')
+#     graph.add_edge(1, 2)
+#     graph.neighbours(2)
+#     graph.print_str()
+
+
+# if __name__ == "__main__":
+#     main()
+
+#vertices have to be in ascii number for character instead of letters
+
+#Directed graph with weighted edges 
+
+
 
 
 
@@ -110,7 +170,7 @@ def insertion_sort(list):
                 list[i+1] = list[i]
                 list[i] = value
 
-print(insertion_sort(list2))
+#print(insertion_sort(list2))
 
         # while i>=0:
         #     if value < list[i]:
