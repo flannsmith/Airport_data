@@ -4,7 +4,6 @@ import io
 #inefficient to iterate through 2 dicts
 #how to join 2 currency files based on same values? 
 
-
 class Currency:
     
     def __init__(self):
@@ -23,8 +22,7 @@ class Currency:
         return self.__currencyDict
 
     #calculate price by dividing distance from toEuroRate
-
-   
+    
            
         
     

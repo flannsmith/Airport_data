@@ -30,19 +30,6 @@ def main():
         #print(distances)
 
 
-    #list of distances
-    finDist = []
-    for airs in distances:
-        src = airs
-        indivDist = []
-        for airs2 in distances:
-            dest = airs2
-            indivDist.append(_airdict.distanceBetweenAirports(
-                distances[src][0], distances[src][1], distances[dest][0], distances[dest][1]))
-        finDist.append(indivDist)
-    print(finDist)
-
-
     #To make dictionary of distances
     dict_air = {}
     for airs in distances:
@@ -54,90 +41,108 @@ def main():
         dict_air[src] = indivDist
     print(dict_air)
     
+    #making 
     #nodes are list of keys 
-
     graph_nodes = (list(dict_air.keys()))
+    print(graph_nodes)
+
+    airports_visited = []
+    min_dist = []
+    airIndices = []
+    new_source = graph_nodes[0]
+    # airIndices.append(0)
+    for s in graph_nodes:
+        # print("Dest",new_source)
+        airports_visited.append(new_source)
+        distances = dict_air.get(new_source)
+        for i in airIndices:
+            # print(s)
+            distances[i] = 9999999
+        # print(distances)
+        index=-1
+        for i,element in enumerate(distances):
+            if element == 0: 
+                index=i
+                distances[i] = 9999999
+        airIndices.append(index)
+        mDist = min(distances)
+        #print(mDist)
+        airpIndex = distances.index(mDist)
+        airIndices.append(airpIndex)
+        #print("Index:",airpIndex)
+        new_source = graph_nodes[airpIndex]
+        min_dist.append(min(distances))
+        #print(min_dist)
+        
+    #min_dist = min_dist[:-1]
+    #print(airports_visited)
+    newSrc = airports_visited[-1]
+    home = airports_visited[0]
+    airports_visited.append(home)
+    #print(airports_visited)
+    #print(min_dist)
+
+    _currencyobject = Currency()
+    parsedCurrencyCost = _currencyobject.currencyParser('Currency_code_concat')
+    print(parsedCurrencyCost)
+
+
+
+
+
+          
+
+            
+
+
+            # parsedAircraftDict = _airdict.Aircraft('aircraft.csv')
+            # if aircraft_code in parsedAircraftDict:
+            #     print(parsedAircraftDict.get(aircraft_code))
+
+
+
+
+            #print(parsedAircraftDict)
+
+
+            #check aircraft input and save it to return range from key
+            #check key value pairs 
+
+            #and print(min(element))
+
+    
+
+        # if element != 0 
+        #     print(element)
+   #find the minimum value in the list, append it to min_dist
+
+   
+
+
+
+
+
+    # for key in dict_air:
+    #     print(dict_air.get(key))
+
+
+
+if __name__ == "__main__":
+    main()
+
+
     #print(graph_nodes)
 
-    g = Graph()
-    #adding keys of dict to become the nodes in my graph
-    for node in graph_nodes:
-        g.add_node(node)
-    g.add_edge('A', 'B', 10)
-    g.add_edge('A', 'C', 20)
-    g.add_edge('B', 'D', 15)
-    g.add_edge('C', 'D', 30)
-    g.add_edge('B', 'E', 50)
-    g.add_edge('D', 'E', 30)
-    g.add_edge('E', 'F', 5)
-    
-    #print(shortest_path(graph, 'A', 'D'))
 
-    # _bfsobject = bfs()
-    # bfs(finDist,finDist[0])
+    #List = airports visitied
 
+    #check 0
+    #is aircraft range below this
+    #else cannot do trip
+    #minimum value
+    #index of value
 
-
-
-    # g.add_edge(node[0], node[-1], 15937.30996897588)
-    # g.add_edge(node[0], node[-2], 11943.340591555452)
-
-    # print(g, node[0], node[-1])
-
-
-    # for i in dict_air:
-    #     x = (dict_air[i])
-    #     for k in x:
-    #         print(k)
-            #graph.add_edge(k)
-
-    
-
-
-
-
-  
-if __name__ == "__main__":
-        main()
-
-
-
-    #Instead of having list of lists: have a dictionary where looks like:
-    # DUB: [123,123,124]
-    #SYD: [144, 444, 223]
-    #AUD: [123,233,222]
-    
-
-
-
-
-    # _currencyobject = Currency()
-    # parsedCurrencyCost = _currencyobject.currencyParser('Currency_code_concat')
-
-
-    # distance = airport.Airport()
-    
-        #calculate distance between routes 
-
-    # print(testCsv)
-    # _airdict = airport.Airport()
-    # parsedAirportCsv = _airdict.parseAirport('airport.csv')
-    # for item in parsedAirportCsv:
-    #     print(parsedAirportCsv[item])
-     
-    # print(parsedAirportCsv)
-
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
+    #List = Airports Visited
+    #airports_visited = []
+#     new_source = dict_air #key[0] return key of dict
+#     Distances = Get[]

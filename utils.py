@@ -37,6 +37,7 @@ class utils:
             #item = row[:-1]
             #pops last item in row
             aircraft_code = row.pop()
+            
             #aircraft_code = row[-1:]
             #print(aircraft_code)
             #Checking for incorrect IATA codes
@@ -50,6 +51,8 @@ class utils:
             for aircraft_code in csv_reader:
                 if aircraft_code != parsedAircraft:
                     print("No aircode included")
+                # else: 
+                #     
                 #else: somehow save value of aircraft for later use? 
             else:
                 self.__csv_data.append(row)
