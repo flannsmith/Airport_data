@@ -1,4 +1,12 @@
 
+    #   def legOfJourney(self, dest2, distance):
+    #     for i in self.__currencyDict:
+    #         if i == dest2:
+    #             cost = self.__currencyDict[dest2]   
+    #     return distance/cost
+   
+   
+   
    #list of distances
     # finDist = []
     # for airs in distances:
@@ -10,8 +18,6 @@
     #             distances[src][0], distances[src][1], distances[dest][0], distances[dest][1]))
     #     finDist.append(indivDist)
     # print(finDist)
-
-
 
 # Input = ['DUB','LHR','SYD']
 # New Source = Input[0]

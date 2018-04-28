@@ -18,6 +18,11 @@ class utils:
     #country_currency = Currency.getCountryCurrency("./country_currency_updated.csv")
     #aircraft = Airport.getAircraft("./data/aircraft.csv")
 
+    #Utils class is checking csv input for 3 requirements:
+    #duplicate values
+    #more than 1 airport was inputted
+    #checks for incorrect IATA code
+
     def input(self,csv_path):
         """Takes csv input from command-line and checks for errors"""
         csv_reader = csv.reader(io.open(
@@ -34,14 +39,14 @@ class utils:
             
             parsedAircraft = _airdict.Aircraft('aircraft.csv')
             #For length of input exluding last element(aircraft code)
-            #item = row[:-1]
+            item = row[:-1]
+    
             #pops last item in row
             aircraft_code = row.pop()
-            
             #aircraft_code = row[-1:]
             #print(aircraft_code)
             #Checking for incorrect IATA codes
-            
+
             for item in csv_reader:
                 if item != parsedAirportDict:
                     print("Incorrect IATA entered")

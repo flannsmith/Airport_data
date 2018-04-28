@@ -22,7 +22,9 @@ class Currency:
         return self.__currencyDict
 
     #calculate price by dividing distance from toEuroRate
-    
+
+ 
+
            
         
     
