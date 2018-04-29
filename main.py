@@ -1,15 +1,16 @@
 import argparse
 import csv
 import io
+import geopy.distance
 from operator import itemgetter
 from collections import Counter
 from utils import utils
 from currency import Currency
 from airport import Airport
 from dijkstra_github import Graph
-import geopy.distance
 from bfs2 import bfs
 from bruteForce import MinDist
+from cost import Cost
 
 #queue to deque the 
 
@@ -23,7 +24,7 @@ def main():
     _airdict = Airport()
     parsedAirportDict = _airdict.parseAirport('airport.csv')
     
-    #Iterates over IATA code in testCsv returning their corresponding lat and long values for IATA keys and saving into a dictionary as tuples
+    #Iterates over IATA code in testCsv storing their into a dictionary as tuples
     #Saving lat and long values for each IATA  
     for row in testCsv:
         distances = {}
@@ -43,62 +44,109 @@ def main():
         dict_air[src] = indivDist
     #print(dict_air)
     
-    #transform nodes(keys) of dict into a list
+    #transform nodes(keys) of dict into a sequence
     graph_nodes = (list(dict_air.keys()))
-    #print(graph_nodes)
+  
+    # _min_distance_obj = MinDist()
+    # shortest_path = _min_distance_obj.bruteForce(graph_nodes,dict_air)
 
-    _min_distance_obj = MinDist()
-    shortest_path = _min_distance_obj.bruteForce(graph_nodes,dict_air)
+    airports_visited = []
+    min_dist = []
+    airIndices = []
+    new_source = graph_nodes[0]
+    # airIndices.append(0)
+    for s in graph_nodes:
+        # print("Destination:", new_source)
+        airports_visited.append(new_source)
+        distances = dict_air.get(new_source)
+        for i in airIndices:
+            # print(s)
+            distances[i] = 9999999
+        # print(distances)
+        index=-1
+        for i,element in enumerate(distances):
+            if element == 0:
+                index=i
+                distances[i] = 9999999
+        airIndices.append(index)
+        mDist = min(distances)
+        #print(mDist)
+        airpIndex = distances.index(mDist)
+        airIndices.append(airpIndex)
+        #print("Index:",airpIndex)
+        new_source = graph_nodes[airpIndex]
+        min_dist.append(min(distances))
+    
     #Popping last element off stack to get 4 shortest distances
-    shortest_path.pop()
-    print(shortest_path)
+    min_dist.pop()
+    #print(min_dist)
+    print('________________________________________________', '\n')
+    print("Itinerary:",airports_visited, '\n')
+
+    #Destination is the last index of airports_visited list
+    _currencyobject = Currency()
+    parsedCurrencyCost = _currencyobject.currencyParser('Currency_code_concat.csv')
+
+    billingCountry = airports_visited[-1]
+
+    _costObject = Cost()
+    toEuroRate = _costObject.toEuroRate(billingCountry,'airport.csv','countrycurrency.csv','currencyrates.csv')
+    #print(toEuroRate)
+
+    print("Cost of round trip: ", "€",(sum(min_dist)//toEuroRate))
+
+    print('________________________________________________')
+
+
+    #For the cost do I have to calculate the cost from last destination to home as well?? 
+
+
+    
+
+    
+ 
+
+
+    #why is my values saved in a tuple??? 
+   # for key in parsedCurrencyCost.items():
+        #print(key[0])
+        #if billingCountry == key[0]:
+           
+        # print(key[0])
+        # data = parsedCurrencyCost.get(billingCountry)
+        #print(data)
+        
+        
+        #if key == billingCountry:
+  
+
+
+        # 
+        #     print(value)
+    
+    # for key,value in parsedCurrencyCost.items():
+    #     #print(key,value)
+    #     #print(parsedCurrencyCost[key])
+    #     print(parsedCurrencyCost[value])
+    #     if airports_visited[-1] == parsedCurrencyCost[key]:
+    #         print(parsedCurrencyCost[value])
+    #         #print(key[1])
+
+  
 
     #if sum shortest_path is greater than aircraft range, aircraft range minus sum and print out
     #please refuel in ......... kms
    
+   
+    #print(parsedCurrencyCost)
 
-
-
+  
 
 
 
  
 
 
-
-
-
-
-
-
-
-    # airports_visited = []
-    # min_dist = []
-    # airIndices = []
-    # new_source = graph_nodes[0]
-    # # airIndices.append(0)
-    # for s in graph_nodes:
-    #     # print("Destination:", new_source)
-    #     airports_visited.append(new_source)
-    #     distances = dict_air.get(new_source)
-    #     for i in airIndices:
-    #         # print(s)
-    #         distances[i] = 9999999
-    #     # print(distances)
-    #     index=-1
-    #     for i,element in enumerate(distances):
-    #         if element == 0: 
-    #             index=i
-    #             distances[i] = 9999999
-    #     airIndices.append(index)
-    #     mDist = min(distances)
-    #     #print(mDist)
-    #     airpIndex = distances.index(mDist)
-    #     airIndices.append(airpIndex)
-    #     #print("Index:",airpIndex)
-    #     new_source = graph_nodes[airpIndex]
-    #     min_dist.append(min(distances))
-    #     #print(min_dist)
     
     # #sequences implement
         
@@ -114,16 +162,7 @@ def main():
     #for iata in currencydict:
     #if code is there return to euro cost and save to list
 
-    _currencyobject = Currency()
-    parsedCurrencyCost = _currencyobject.currencyParser('Currency_code_concat')
-    #print(parsedCurrencyCost)
     
-    for key, value in parsedCurrencyCost.items(): 
-        for iata in graph_nodes:
-            if iata == parsedCurrencyCost[key]:
-                print(parsedCurrencyCost[value])
-                #values = parsedCurrencyCost[value]
-                #print(values)
     
 
 

@@ -34,6 +34,5 @@ class MinDist:
             #print(min_dist)
             #remove last element in list which is 9999999
             #min_dist = min_dist[:-1]
-        return(min_dist)
-
+        return("Shortest path:", min_dist, "Airports visited:", airports_visited)
 

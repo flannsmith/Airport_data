@@ -46,12 +46,12 @@ class Airport:
     def distanceBetweenAirports(self, latitude1,longitude1,latitude2,longitude2):
             # """Calculates the distance from between 2 airports and returns a float"""
             # print("Latitude1: {}; Longitude1: {}, Latitude2: {}, Longitude:{} ".format(latitude1,longitude1,latitude2,longitude2))
-            # coords_1 = (latitude1, longitude1)
-            # coords_2 = (latitude2, longitude2)
+            coords_1 = (latitude1, longitude1)
+            coords_2 = (latitude2, longitude2)
             if latitude1 == latitude2 and longitude1 == longitude2:
                 return 0
             else:
-                return geopy.distance.vincenty(latitude1, longitude1, latitude2, longitude2).km
+                return geopy.distance.vincenty(coords_1, coords_2).km
 
     #minimum edge value
     # 

@@ -6,17 +6,17 @@ from operator import itemgetter
 from collections import Counter
 from airport import Airport
 
+#make structures for retrieving data
+#airports = Airport.getAirportData("./data/airports.csv")
+#currency_rate = Currency.getCurrency("./data/currencyrates_updated.csv")
+#country_currency = Currency.getCountryCurrency("./country_currency_updated.csv")
+#aircraft = Airport.getAircraft("./data/aircraft.csv")
+
 class utils:
 
     #init always present in class
     def __init__(self):
         self.__csv_data=[]
-
-    #make functions for retrieving data
-    #airports = Airport.getAirportData("./data/airports.csv")
-    #currency_rate = Currency.getCurrency("./data/currencyrates_updated.csv")
-    #country_currency = Currency.getCountryCurrency("./country_currency_updated.csv")
-    #aircraft = Airport.getAircraft("./data/aircraft.csv")
 
     #Utils class is checking csv input for 3 requirements:
     #duplicate values
@@ -40,23 +40,22 @@ class utils:
             parsedAircraft = _airdict.Aircraft('aircraft.csv')
             #For length of input exluding last element(aircraft code)
             item = row[:-1]
+            print(item)
     
-            #pops last item in row
+            #remove last item from stack
             aircraft_code = row.pop()
-            #aircraft_code = row[-1:]
-            #print(aircraft_code)
+            
             #Checking for incorrect IATA codes
-
             for item in csv_reader:
                 if item != parsedAirportDict:
-                    print("Incorrect IATA entered")
+                    print("Incorrect IATA entered",'\n')
                 if len(item) <= 1:
-                    print("Need to enter a minimum of 2 aircodes")
+                    print("Need to enter a minimum of 2 aircodes", '\n')
             #create aircraft object
             for aircraft_code in csv_reader:
                 if aircraft_code != parsedAircraft:
                     print("No aircode included")
-                # else: 
+                #else: 
                 #     
                 #else: somehow save value of aircraft for later use? 
             else:
