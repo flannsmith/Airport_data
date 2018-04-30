@@ -17,8 +17,9 @@ Run the following commands in Terminal:
 
 ```sh
 git clone git@github.com:flannsmith/Airport_data.git
-cd AirportData
-conda env create -f environment.yml
+cd Airport_data
+conda env create -f=environment.yml OR conda create -n comp2023017202469 Python=3.6
+source activate comp2023017202469 OR activate comp2023017202469
 pip install -r requirements.txt
 ```
 
