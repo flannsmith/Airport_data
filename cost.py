@@ -21,7 +21,6 @@ class Cost:
         next(csv1)
         for row in csv1:
             if row[0] == country:
-                #print(row)
                 #print(row['currency_alphabetic_code'])
                 CurrCode = row[14]
         print("The destination's currency is:",CurrCode, '\n')
@@ -31,5 +30,8 @@ class Cost:
         for row1 in csv2:
             if row1[1] == CurrCode:
                 #print(row1[2])
-                CurrRate = row1[3]
+                CurrRate = row1[2]
         return float(CurrRate)
+
+
+
