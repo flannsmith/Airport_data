@@ -1,6 +1,6 @@
-name: comp20230project
+name: comp2023017202469
 channels:
   - conda-forge
   - defaults
-prefix: /anaconda3/envs/comp20230project
+prefix: /anaconda3/envs/comp2023017202469
 
