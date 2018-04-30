@@ -2,6 +2,8 @@ import unittest
 
 from time import time
 
+#Time testing
+
 def compute_average(n):
     """Performs n appends to an empty list and return average time elapsed"""
     data = []
