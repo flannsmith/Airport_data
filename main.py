@@ -8,8 +8,7 @@ from utils import utils
 from currency import Currency
 from airport import Airport
 from cost import Cost
-
-#queue to deque the 
+ 
 
 def main():
     parser = argparse.ArgumentParser()
